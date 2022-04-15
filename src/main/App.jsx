@@ -8,13 +8,15 @@ import Nav from "../components/template/Nav";
 import Routes from "./Routes";
 import Footer from "../components/template/Footer";
 
-export default (props) => (
-  <div className="app">
-    <BrowserRouter>
-      <Logo />
-      <Nav />
-      <Routes />
-      <Footer />
-    </BrowserRouter>
-  </div>
-);
+export default function App(props) {
+  return (
+    <div className="app">
+      <BrowserRouter>
+        <Logo />
+        <Nav />
+        <Routes />
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
+}
