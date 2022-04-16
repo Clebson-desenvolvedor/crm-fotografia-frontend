@@ -11,6 +11,9 @@ export default function Nav(props) {
         <a href="clients">
           <i className="fa fa-users"></i> Clientes
         </a>
+        <a href="services">
+          <i className="fa fa-camera"></i> Serviços
+        </a>
       </nav>
     </aside>
   );
