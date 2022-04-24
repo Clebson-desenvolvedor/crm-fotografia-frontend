@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Main from "../template/Main";
 import clients from "./clients";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const headerProps = {
   icon: "users",
@@ -19,7 +20,7 @@ export default class ClientCrud extends Component {
   }
 
   renderTable() {
-    const {stClients} = this.state;
+    const { stClients } = this.state;
     return (
       <div>
         {console.log(stClients)}
@@ -33,16 +34,29 @@ export default class ClientCrud extends Component {
             </tr>
           </thead>
           <tbody>
-           {stClients.map(e => (
-             <tr>
-               <td>{e.idcliente}</td>
-               <td>{e.nomecliente}</td>
-               <td>{e.email}</td>
-               <td>{e.whatsapp}</td>
-             </tr>
-           ))}
+            {stClients.map((e) => (
+              <tr>
+                <td>{e.idcliente}</td>
+                <td>
+                  <a href="#" className="text-decoration-none text-dark">
+                    {e.nomecliente}
+                  </a>
+                </td>
+                <td>{e.email}</td>
+                <td>{e.whatsapp}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
+      </div>
+    );
+  }
+
+  renderMenu() {
+    return (
+      <div className="render-menu">
+        <input type="search" name="" id="btn-search" placeholder="buscar" />
+        <button className="btn btn-success">Criar</button>
       </div>
     );
   }
@@ -51,6 +65,7 @@ export default class ClientCrud extends Component {
     return (
       <Main {...headerProps}>
         <h3>Lista de Clientes</h3>
+        {this.renderMenu()}
         {this.renderTable()}
       </Main>
     );
