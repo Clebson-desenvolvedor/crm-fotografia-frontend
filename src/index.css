@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+table thead {
+  background-color: #1a2f3a;
+  color: #fff;
+}
