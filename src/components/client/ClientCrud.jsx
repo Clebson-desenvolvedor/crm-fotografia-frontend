@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Main from "../template/Main";
 import clients from "./clients";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const headerProps = {
   icon: "users",
@@ -38,7 +37,11 @@ export default class ClientCrud extends Component {
               <tr>
                 <td>{e.idcliente}</td>
                 <td>
-                  <a href="#" className="text-decoration-none text-dark">
+                  <a
+                    href=""
+                    className={`text-decoration-none text-dark`}
+                    title={`Busca todos os dados deste cliente`}
+                  >
                     {e.nomecliente}
                   </a>
                 </td>
@@ -55,8 +58,22 @@ export default class ClientCrud extends Component {
   renderMenu() {
     return (
       <div className="render-menu">
-        <input type="search" name="" id="btn-search" placeholder="buscar" />
-        <button className="btn btn-success">Criar</button>
+        <div className="search-box">
+          <input
+            type={"text"}
+            className={"search-txt"}
+            placeholder={"Buscar"}
+          />
+          <a href="#" className={"search-btn"}>
+            <i className={`fa fa-search`}></i>
+          </a>
+        </div>
+        <a href="/" className={`text-decoration-none text-dark`}>
+          Listar todos
+        </a>
+        <a href="" className={`text-decoration-none text-dark`}>
+          <i className={`fa fa-solid fa-plus`} title={`Criar novo`}></i>
+        </a>
       </div>
     );
   }
