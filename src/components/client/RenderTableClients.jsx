@@ -1,4 +1,4 @@
-export default function RenderTable(props) {
+export default function RenderTableClients(props) {
   const { clients } = props;
   return (
     <table className="table">
@@ -12,7 +12,7 @@ export default function RenderTable(props) {
       </thead>
       <tbody>
         {clients.map(client => (
-          <tr key={client.id}>
+          <tr key={client.idcliente}>
             <td>{client.idcliente}</td>
             <td>
               <a

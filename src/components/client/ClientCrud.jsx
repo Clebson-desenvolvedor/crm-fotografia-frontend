@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Main from "../template/Main";
-import clientsApi from "./clientsApi";
-import RenderMenu from "./RenderMenu";
-import RenderTable from "./RenderTable";
+import { api } from "../../backend/api";
+import RenderMenu from "../functions/RenderMenu";
+import RenderTableClients from "./RenderTableClients";
 
 const headerProps = {
   icon: "users",
@@ -14,7 +14,7 @@ export default function ClientCrud() {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
-    clientsApi.get("clients").then(({ data }) => {
+    api.get("clients").then(({ data }) => {
       setClients(data);
     });
   }, []);
@@ -23,7 +23,7 @@ export default function ClientCrud() {
     <Main {...headerProps}>
       <h3>Lista de Clientes</h3>
       <RenderMenu />
-      <RenderTable clients={clients} />
+      <RenderTableClients clients={clients} />
     </Main>
   );
 }
