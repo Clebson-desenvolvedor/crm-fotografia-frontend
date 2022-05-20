@@ -1,4 +1,5 @@
-export default function RenderMenu() {
+export default function RenderMenu(props) {
+  console.log(props)
     return (
       <div className="render-menu">
         <div className="search-box">
@@ -14,7 +15,7 @@ export default function RenderMenu() {
         <a href="/" className={`text-decoration-none text-dark`}>
           Listar todos
         </a>
-        <a href="" className={`text-decoration-none text-dark`}>
+        <a href={`/${props.route}/add`} className={`text-decoration-none text-dark`}>
           <i className={`fa fa-solid fa-plus`} title={`Criar novo`}></i>
         </a>
       </div>

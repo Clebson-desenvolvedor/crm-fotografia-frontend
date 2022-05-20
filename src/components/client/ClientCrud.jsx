@@ -10,6 +10,8 @@ const headerProps = {
   subtitle: "Cadastro de Clientes: Incluir, Listar, Alterar e Excluir!",
 };
 
+
+
 export default function ClientCrud() {
   const [clients, setClients] = useState([]);
 
@@ -19,10 +21,12 @@ export default function ClientCrud() {
     });
   }, []);
 
+  clients.route = "clients";
+
   return (
     <Main {...headerProps}>
       <h3>Lista de Clientes</h3>
-      <RenderMenu />
+      <RenderMenu {...clients} />
       <RenderTableClients clients={clients} />
     </Main>
   );

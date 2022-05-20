@@ -16,14 +16,13 @@ export default function ServiceCrud() {
   useEffect(() => {
     api.get("services").then(({ data }) => {
       setServices(data);
-      console.log(data);
     });
   }, []);
 
   return (
     <Main {...headerProps}>
       <h3>Gerenciamento de Serviços</h3>
-      <RenderMenu />
+      <RenderMenu services={services} />
       <RenderTableServices services = {services} />
     </Main>
   );
