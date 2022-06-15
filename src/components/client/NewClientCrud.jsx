@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Main from "../template/Main";
+import { useForm } from "react-hook-form";
+import { api } from "../../backend/api";
 
 const headerProps = {
   icon: "user",
@@ -7,13 +9,33 @@ const headerProps = {
 };
 
 export default function NewClientCrud() {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => {
+    api.post("/clients", {
+      nomecliente: data.name,
+      dtnasccliente: data.birthday,
+      dtcadcliente: data.rDate,
+      email: data.email,
+      whatsapp: data.whatsapp,
+      enderecocliente: data.pPlace,
+      numeroendcliente: data.number,
+      bairrocliente: data.district,
+      cepcliente: data.cep,
+      cidadecliente: data.city,
+    }).then((response) => {
+      console.log(response.data);
+    }).catch((error) => {
+      console.log(error.response.data)
+    });
+  }
+
   return (
     <Main {...headerProps}>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="name">Nome</label>
-            <input
+            <input {...register("name")}
               type="text"
               class="form-control"
               id="name"
@@ -22,7 +44,7 @@ export default function NewClientCrud() {
           </div>
           <div class="form-group col-md-3">
             <label for="email">E-mail</label>
-            <input
+            <input {...register("email")}
               type="email"
               class="form-control"
               id="email"
@@ -31,11 +53,11 @@ export default function NewClientCrud() {
           </div>
           <div class="form-group col-md-2">
             <label for="date">Data de Nascimento</label>
-            <input type="date" class="form-control" id="datenasc"></input>
+            <input {...register("birthday")} type="date" class="form-control" id="birthday"></input>
           </div>
           <div class="form-group col-md-3">
             <label for="whatsapp">WhatsApp</label>
-            <input
+            <input {...register("whatsapp")}
               type="text"
               class="form-control"
               id="whatsapp"
@@ -47,44 +69,44 @@ export default function NewClientCrud() {
         <div className="form-row">
           <div class="form-group col-md-2">
             <label for="cep">CEP</label>
-            <input
+            <input {...register("cep")}
               type="text"
               class="form-control"
-              id="rua"
-              placeholder="Rua, Avenida, etc..."
+              id="cep"
+              placeholder="00000-000"
             ></input>
           </div>
 
           <div class="form-group col-md-4">
-            <label for="rua">Lograduoro</label>
-            <input
+            <label for="rua">Logradouro</label>
+            <input {...register("pPlace")}
               class="form-control"
               type="text"
-              id="num"
-              placeholder="123..."
+              id="pPlace"
+              placeholder="rua, avenida, etc"
             />
           </div>
           <div class="form-group col-md-1">
             <label for="numero">Número</label>
-            <input type="text" class="form-control" id="bairro"></input>
+            <input {...register("number")} type="text" class="form-control" id="number"></input>
           </div>
           <div class="form-group col-md-3">
             <label for="bairro">Bairro</label>
-            <input type="text" class="form-control" id="bairro"></input>
+            <input {...register("district")} type="text" class="form-control" id="district"></input>
           </div>
           <div class="form-group col-md-2">
             <label for="cidade">Cidade</label>
-            <input type="text" class="form-control" id="bairro"></input>
+            <input {...register("city")} type="text" class="form-control" id="city"></input>
           </div>
         </div>
 
         <div className="form-row">
           <div class="form-group col-md-2">
-            <label for="bairro">Data de Cadastro do Cliente</label>
-            <input type="date" class="form-control" id="datecad"></input>
+            <label for="datacad">Data de Cadastro do Cliente</label>
+            <input {...register("rDate")} type="date" class="form-control" id="rDate"></input>
           </div>
         </div>
-        <button type="button" class="btn btn-success">
+        <button type="submit" class="btn btn-success">
           Salvar
         </button>
         <button type="button" class="btn btn-danger ml-4">
