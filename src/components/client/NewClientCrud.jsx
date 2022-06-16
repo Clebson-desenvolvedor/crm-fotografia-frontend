@@ -9,6 +9,7 @@ const headerProps = {
 };
 
 export default function NewClientCrud() {
+  const { formData, setFormData } = useState("")
   const { register, handleSubmit } = useForm();
   const onSubmit = data => {
     api.post("/clients", {
@@ -23,9 +24,10 @@ export default function NewClientCrud() {
       cepcliente: data.cep,
       cidadecliente: data.city,
     }).then((response) => {
-      console.log(response.data);
+      alert(response.data['mensagem']);
+      window.location.reload();
     }).catch((error) => {
-      console.log(error.response.data)
+      alert(error.response.data['error'])
     });
   }
 
