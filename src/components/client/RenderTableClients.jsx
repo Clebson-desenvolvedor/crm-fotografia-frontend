@@ -16,7 +16,7 @@ export default function RenderTableClients(props) {
             <td>{client.idcliente}</td>
             <td>
               <a
-                href=""
+                href={`/client/${client.idcliente}`}
                 className={`text-decoration-none text-dark`}
                 title={`Busca todos os dados deste cliente`}
               >
