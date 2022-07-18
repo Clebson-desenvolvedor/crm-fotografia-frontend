@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React from "react";
 import Main from "../template/Main";
 import { api } from "../../backend/api";
 
@@ -13,27 +13,25 @@ const headerProps = {
 export default function NewClientCrud() {
 
   const initialValue = {
-    name: '',
-    birthday: '',
-    rDate: '',
+    nomecliente: '',
+    dtnasccliente: '',
+    dtcadcliente: '',
     email: '',
     whatsapp: '',
-    pPlace: '',
-    number: '',
-    district: '',
-    cep: '',
-    city: '',
+    enderecocliente: '',
+    numeroendcliente: '',
+    bairrocliente: '',
+    cepcliente: '',
+    cidadecliente: '',
   }
-  const [values, setValues] = useState({initialValue});
+
   function onChange(ev) {
-    const {name, value} = ev.target;
-    console.log(values)
-    setValues({ ...values, [name]: value});
+    initialValue[ev.target.id] = ev.target.value;
   }
 
   function onSubmit(ev) {
     ev.preventDefault();
-    api.post('/clients', values)
+    api.post('/clients', initialValue)
       .then(response => {
         alert(response.data['mensagem']);
         window.location.reload();
@@ -51,7 +49,7 @@ export default function NewClientCrud() {
             <input
               type="text"
               class="form-control"
-              id="name"
+              id="nomecliente"
               placeholder="Digite o nome"
               onChange={onChange}
             ></input>
@@ -68,7 +66,7 @@ export default function NewClientCrud() {
           </div>
           <div class="form-group col-md-2">
             <label for="date">Data de Nascimento</label>
-            <input type="date" class="form-control" id="birthday" onChange={onChange}></input>
+            <input type="date" class="form-control" id="dtnasccliente" onChange={onChange}></input>
           </div>
           <div class="form-group col-md-3">
             <label for="whatsapp">WhatsApp</label>
@@ -98,29 +96,29 @@ export default function NewClientCrud() {
             <input 
               class="form-control"
               type="text"
-              id="pPlace"
+              id="enderecocliente"
               placeholder="rua, avenida, etc"
               onChange={onChange}
             />
           </div>
           <div class="form-group col-md-1">
             <label for="numero">Número</label>
-            <input type="text" class="form-control" id="number" onChange={onChange}></input>
+            <input type="text" class="form-control" id="numeroendcliente" onChange={onChange}></input>
           </div>
           <div class="form-group col-md-3">
             <label for="bairro">Bairro</label>
-            <input type="text" class="form-control" id="district" onChange={onChange}></input>
+            <input type="text" class="form-control" id="bairrocliente" onChange={onChange}></input>
           </div>
           <div class="form-group col-md-2">
             <label for="cidade">Cidade</label>
-            <input type="text" class="form-control" id="city" onChange={onChange}></input>
+            <input type="text" class="form-control" id="cidadecliente" onChange={onChange}></input>
           </div>
         </div>
 
         <div className="form-row">
           <div class="form-group col-md-2">
             <label for="datacad">Data de Cadastro do Cliente</label>
-            <input  type="date" class="form-control" id="rDate" onChange={onChange}></input>
+            <input  type="date" class="form-control" id="dtcadcliente" onChange={onChange}></input>
           </div>
         </div>
         <button type="submit" class="btn btn-success">
